@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Ej2FeedbackU2</string>
+    <string name="spain">España</string>
+    <string name="france">Francia</string>
+    <string name="italy">Italia</string>
+    <string name="ireland">Irlanda</string>
+    <string name="japan">Japón</string>
+    <string name="usa">EEUU</string>
+    <string name="argentine">Argentina</string>
+    <string name="holland">Holanda</string>
+    <string name="morocco">Marruecos</string>
+    <string name="portugal">Portugal</string>
+    <string name="title">País</string>
+</resources>
