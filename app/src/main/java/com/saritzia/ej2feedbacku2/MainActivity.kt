@@ -1,10 +1,12 @@
 package com.saritzia.ej2feedbacku2
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView.OnItemLongClickListener
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.saritzia.ej2feedbacku2.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -16,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setCountries()
         setListAdapter()
         didTapWithShortClick()
-       // didTapWithLongClick()
+        didTapWithLongClick()
     }
 
     private fun setListAdapter(){
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.listView.adapter = adapter
     }
     private fun setCountries() {
+        countries = ArrayList()
         countries.add(Country(getString(R.string.spain),47200000))
         countries.add(Country(getString(R.string.italy),59110000))
         countries.add(Country(getString(R.string.portugal),10330000))
@@ -37,8 +40,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun didTapWithShortClick() {
-        binding.listView.setOnItemClickListener { adapterView, view, position, id ->
-            val country = countries.get(position)
+        binding.listView.setOnItemClickListener { _, _, position, _ ->
+            val country = countries[position]
             val intent = Intent(this, SecondActivity::class.java)
             intent.putExtra("country",country)
             startActivity(intent)
@@ -46,9 +49,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun didTapWithLongClick() {
-        binding.listView.setOnItemLongClickListener { adapterView, view, position, id ->
-            binding.textView.text = countries.get(position).countryName
-            return@setOnItemLongClickListener true
-        }
+        binding.listView.onItemLongClickListener = OnItemLongClickListener { _, _, position, _ ->
+                binding.textView.text = countries[position].countryName
+            true
+            }
     }
 }
